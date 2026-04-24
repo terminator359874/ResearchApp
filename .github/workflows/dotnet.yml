@@ -53,4 +53,4 @@ jobs:
           name: coverage-report
           path: coverage/
       - name: List files
-      run: dir /s
+        run: dir /s
