@@ -277,6 +277,9 @@ public class RelayCommand : ICommand
     {
         await _executeAsync();
     }
-
-    public event EventHandler? CanExecuteChanged;
+    public event EventHandler? CanExecuteChanged
+    {
+        add { }
+        remove { }
+    }
 }
