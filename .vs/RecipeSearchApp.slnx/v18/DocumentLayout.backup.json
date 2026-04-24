@@ -1,0 +1,250 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\pvt-9-23\\source\\repos\\winui\\RecipeSearchApp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\pvt-9-23\\source\\repos\\winui\\RecipeSearchApp\\RecipeSearchApp\\obj\\x64\\Debug\\net8.0-windows10.0.19041.0\\App.g.i.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:RecipeSearchApp\\obj\\x64\\Debug\\net8.0-windows10.0.19041.0\\App.g.i.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE5FE299-854A-E4FD-9057-3A05D0839127}|RecipeSearchApp\\RecipeSearchApp.csproj|c:\\users\\pvt-9-23\\source\\repos\\winui\\recipesearchapp\\recipesearchapp\\services\\databaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE5FE299-854A-E4FD-9057-3A05D0839127}|RecipeSearchApp\\RecipeSearchApp.csproj|solutionrelative:recipesearchapp\\services\\databaseservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{26ABAF8D-64CB-9045-648B-9377AEC1A7CE}|RecipeSearchApp.Tests\\RecipeSearchApp.Tests.csproj|c:\\users\\pvt-9-23\\source\\repos\\winui\\recipesearchapp\\recipesearchapp.tests\\integration\\databaseserviceintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{26ABAF8D-64CB-9045-648B-9377AEC1A7CE}|RecipeSearchApp.Tests\\RecipeSearchApp.Tests.csproj|solutionrelative:recipesearchapp.tests\\integration\\databaseserviceintegrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE5FE299-854A-E4FD-9057-3A05D0839127}|RecipeSearchApp\\RecipeSearchApp.csproj|c:\\users\\pvt-9-23\\source\\repos\\winui\\recipesearchapp\\recipesearchapp\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{FE5FE299-854A-E4FD-9057-3A05D0839127}|RecipeSearchApp\\RecipeSearchApp.csproj|solutionrelative:recipesearchapp\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE5FE299-854A-E4FD-9057-3A05D0839127}|RecipeSearchApp\\RecipeSearchApp.csproj|c:\\users\\pvt-9-23\\source\\repos\\winui\\recipesearchapp\\recipesearchapp\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE5FE299-854A-E4FD-9057-3A05D0839127}|RecipeSearchApp\\RecipeSearchApp.csproj|solutionrelative:recipesearchapp\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE5FE299-854A-E4FD-9057-3A05D0839127}|RecipeSearchApp\\RecipeSearchApp.csproj|c:\\users\\pvt-9-23\\source\\repos\\winui\\recipesearchapp\\recipesearchapp\\viewmodels\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE5FE299-854A-E4FD-9057-3A05D0839127}|RecipeSearchApp\\RecipeSearchApp.csproj|solutionrelative:recipesearchapp\\viewmodels\\mainviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE5FE299-854A-E4FD-9057-3A05D0839127}|RecipeSearchApp\\RecipeSearchApp.csproj|c:\\users\\pvt-9-23\\source\\repos\\winui\\recipesearchapp\\recipesearchapp\\services\\inmemorycache.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE5FE299-854A-E4FD-9057-3A05D0839127}|RecipeSearchApp\\RecipeSearchApp.csproj|solutionrelative:recipesearchapp\\services\\inmemorycache.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE5FE299-854A-E4FD-9057-3A05D0839127}|RecipeSearchApp\\RecipeSearchApp.csproj|c:\\users\\pvt-9-23\\source\\repos\\winui\\recipesearchapp\\recipesearchapp\\services\\stringsearcher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE5FE299-854A-E4FD-9057-3A05D0839127}|RecipeSearchApp\\RecipeSearchApp.csproj|solutionrelative:recipesearchapp\\services\\stringsearcher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE5FE299-854A-E4FD-9057-3A05D0839127}|RecipeSearchApp\\RecipeSearchApp.csproj|c:\\users\\pvt-9-23\\source\\repos\\winui\\recipesearchapp\\recipesearchapp\\services\\bloomfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE5FE299-854A-E4FD-9057-3A05D0839127}|RecipeSearchApp\\RecipeSearchApp.csproj|solutionrelative:recipesearchapp\\services\\bloomfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE5FE299-854A-E4FD-9057-3A05D0839127}|RecipeSearchApp\\RecipeSearchApp.csproj|c:\\users\\pvt-9-23\\source\\repos\\winui\\recipesearchapp\\recipesearchapp\\services\\trienode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE5FE299-854A-E4FD-9057-3A05D0839127}|RecipeSearchApp\\RecipeSearchApp.csproj|solutionrelative:recipesearchapp\\services\\trienode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE5FE299-854A-E4FD-9057-3A05D0839127}|RecipeSearchApp\\RecipeSearchApp.csproj|c:\\users\\pvt-9-23\\source\\repos\\winui\\recipesearchapp\\recipesearchapp\\recipesearchapp.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{FE5FE299-854A-E4FD-9057-3A05D0839127}|RecipeSearchApp\\RecipeSearchApp.csproj|solutionrelative:recipesearchapp\\recipesearchapp.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE5FE299-854A-E4FD-9057-3A05D0839127}|RecipeSearchApp\\RecipeSearchApp.csproj|c:\\users\\pvt-9-23\\source\\repos\\winui\\recipesearchapp\\recipesearchapp\\models\\recipe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FE5FE299-854A-E4FD-9057-3A05D0839127}|RecipeSearchApp\\RecipeSearchApp.csproj|solutionrelative:recipesearchapp\\models\\recipe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{74946827-37a0-11d2-a273-00c04f8ef4ff}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "App.g.i.cs",
+              "DocumentMoniker": "C:\\Users\\pvt-9-23\\source\\repos\\winui\\RecipeSearchApp\\RecipeSearchApp\\obj\\x64\\Debug\\net8.0-windows10.0.19041.0\\App.g.i.cs",
+              "RelativeDocumentMoniker": "RecipeSearchApp\\obj\\x64\\Debug\\net8.0-windows10.0.19041.0\\App.g.i.cs",
+              "ToolTip": "C:\\Users\\pvt-9-23\\source\\repos\\winui\\RecipeSearchApp\\RecipeSearchApp\\obj\\x64\\Debug\\net8.0-windows10.0.19041.0\\App.g.i.cs",
+              "RelativeToolTip": "RecipeSearchApp\\obj\\x64\\Debug\\net8.0-windows10.0.19041.0\\App.g.i.cs",
+              "ViewState": "AgIAADQAAAAAAAAAAAAgwEgAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T04:29:12.139Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Microsoft.Common.CurrentVersion.targets",
+              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\18\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\18\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
+              "ViewState": "AgIAAIAJAAAAAAAAAAAEwJIJAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
+              "WhenOpened": "2026-04-24T04:26:09.153Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\pvt-9-23\\source\\repos\\winui\\RecipeSearchApp\\RecipeSearchApp\\App.xaml.cs",
+              "RelativeDocumentMoniker": "RecipeSearchApp\\App.xaml.cs",
+              "ToolTip": "C:\\Users\\pvt-9-23\\source\\repos\\winui\\RecipeSearchApp\\RecipeSearchApp\\App.xaml.cs",
+              "RelativeToolTip": "RecipeSearchApp\\App.xaml.cs",
+              "ViewState": "AgIAACUAAAAAAAAAAAAEwDwAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-21T03:14:46.9Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\pvt-9-23\\source\\repos\\winui\\RecipeSearchApp\\RecipeSearchApp\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "RecipeSearchApp\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\pvt-9-23\\source\\repos\\winui\\RecipeSearchApp\\RecipeSearchApp\\MainWindow.xaml",
+              "RelativeToolTip": "RecipeSearchApp\\MainWindow.xaml",
+              "ViewState": "AgIAAMoAAAAAAAAAAAAswOcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-21T03:14:27.156Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "MainViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\pvt-9-23\\source\\repos\\winui\\RecipeSearchApp\\RecipeSearchApp\\ViewModels\\MainViewModel.cs",
+              "RelativeDocumentMoniker": "RecipeSearchApp\\ViewModels\\MainViewModel.cs",
+              "ToolTip": "C:\\Users\\pvt-9-23\\source\\repos\\winui\\RecipeSearchApp\\RecipeSearchApp\\ViewModels\\MainViewModel.cs",
+              "RelativeToolTip": "RecipeSearchApp\\ViewModels\\MainViewModel.cs",
+              "ViewState": "AgIAAO4AAAAAAAAAAAAswBQBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-21T03:13:58.882Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DatabaseService.cs",
+              "DocumentMoniker": "C:\\Users\\pvt-9-23\\source\\repos\\winui\\RecipeSearchApp\\RecipeSearchApp\\Services\\DatabaseService.cs",
+              "RelativeDocumentMoniker": "RecipeSearchApp\\Services\\DatabaseService.cs",
+              "ToolTip": "C:\\Users\\pvt-9-23\\source\\repos\\winui\\RecipeSearchApp\\RecipeSearchApp\\Services\\DatabaseService.cs",
+              "RelativeToolTip": "RecipeSearchApp\\Services\\DatabaseService.cs",
+              "ViewState": "AgIAAMABAAAAAAAAAAAgwNkBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-21T03:13:13.997Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DatabaseServiceIntegrationTests.cs",
+              "DocumentMoniker": "C:\\Users\\pvt-9-23\\source\\repos\\winui\\RecipeSearchApp\\RecipeSearchApp.Tests\\Integration\\DatabaseServiceIntegrationTests.cs",
+              "RelativeDocumentMoniker": "RecipeSearchApp.Tests\\Integration\\DatabaseServiceIntegrationTests.cs",
+              "ToolTip": "C:\\Users\\pvt-9-23\\source\\repos\\winui\\RecipeSearchApp\\RecipeSearchApp.Tests\\Integration\\DatabaseServiceIntegrationTests.cs",
+              "RelativeToolTip": "RecipeSearchApp.Tests\\Integration\\DatabaseServiceIntegrationTests.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-24T04:23:03.852Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "InMemoryCache.cs",
+              "DocumentMoniker": "C:\\Users\\pvt-9-23\\source\\repos\\winui\\RecipeSearchApp\\RecipeSearchApp\\Services\\InMemoryCache.cs",
+              "RelativeDocumentMoniker": "RecipeSearchApp\\Services\\InMemoryCache.cs",
+              "ToolTip": "C:\\Users\\pvt-9-23\\source\\repos\\winui\\RecipeSearchApp\\RecipeSearchApp\\Services\\InMemoryCache.cs",
+              "RelativeToolTip": "RecipeSearchApp\\Services\\InMemoryCache.cs",
+              "ViewState": "AgIAADUAAAAAAAAAAAAswHIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-21T03:12:49.322Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "StringSearcher.cs",
+              "DocumentMoniker": "C:\\Users\\pvt-9-23\\source\\repos\\winui\\RecipeSearchApp\\RecipeSearchApp\\Services\\StringSearcher.cs",
+              "RelativeDocumentMoniker": "RecipeSearchApp\\Services\\StringSearcher.cs",
+              "ToolTip": "C:\\Users\\pvt-9-23\\source\\repos\\winui\\RecipeSearchApp\\RecipeSearchApp\\Services\\StringSearcher.cs",
+              "RelativeToolTip": "RecipeSearchApp\\Services\\StringSearcher.cs",
+              "ViewState": "AgIAAHEAAAAAAAAAAAAswNsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-21T03:12:21.672Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "BloomFilter.cs",
+              "DocumentMoniker": "C:\\Users\\pvt-9-23\\source\\repos\\winui\\RecipeSearchApp\\RecipeSearchApp\\Services\\BloomFilter.cs",
+              "RelativeDocumentMoniker": "RecipeSearchApp\\Services\\BloomFilter.cs",
+              "ToolTip": "C:\\Users\\pvt-9-23\\source\\repos\\winui\\RecipeSearchApp\\RecipeSearchApp\\Services\\BloomFilter.cs",
+              "RelativeToolTip": "RecipeSearchApp\\Services\\BloomFilter.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAswEMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-21T03:11:57.563Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "TrieNode.cs",
+              "DocumentMoniker": "C:\\Users\\pvt-9-23\\source\\repos\\winui\\RecipeSearchApp\\RecipeSearchApp\\Services\\TrieNode.cs",
+              "RelativeDocumentMoniker": "RecipeSearchApp\\Services\\TrieNode.cs",
+              "ToolTip": "C:\\Users\\pvt-9-23\\source\\repos\\winui\\RecipeSearchApp\\RecipeSearchApp\\Services\\TrieNode.cs",
+              "RelativeToolTip": "RecipeSearchApp\\Services\\TrieNode.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAAAswFAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-21T03:11:21.941Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "RecipeSearchApp.csproj",
+              "DocumentMoniker": "C:\\Users\\pvt-9-23\\source\\repos\\winui\\RecipeSearchApp\\RecipeSearchApp\\RecipeSearchApp.csproj",
+              "RelativeDocumentMoniker": "RecipeSearchApp\\RecipeSearchApp.csproj",
+              "ToolTip": "C:\\Users\\pvt-9-23\\source\\repos\\winui\\RecipeSearchApp\\RecipeSearchApp\\RecipeSearchApp.csproj",
+              "RelativeToolTip": "RecipeSearchApp\\RecipeSearchApp.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-04-21T03:10:35.568Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Recipe.cs",
+              "DocumentMoniker": "C:\\Users\\pvt-9-23\\source\\repos\\winui\\RecipeSearchApp\\RecipeSearchApp\\Models\\Recipe.cs",
+              "RelativeDocumentMoniker": "RecipeSearchApp\\Models\\Recipe.cs",
+              "ToolTip": "C:\\Users\\pvt-9-23\\source\\repos\\winui\\RecipeSearchApp\\RecipeSearchApp\\Models\\Recipe.cs",
+              "RelativeToolTip": "RecipeSearchApp\\Models\\Recipe.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-21T03:10:02.747Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

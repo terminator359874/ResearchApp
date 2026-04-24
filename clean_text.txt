@@ -1,0 +1,1001 @@
+﻿Практическая работа № 28
+Тестирование приложений C# WinUI 3
+Постановка задачи
+Разработать комплексный набор тестов для приложения RecipeSearchApp (из ПР № 27), охватывающий unit-тестирование всех сервисов, integration-тестирование базы данных, настройку CI/CD через GitHub Actions и анализ покрытия кода. Применить методологию Test-Driven Development (TDD) для добавления нового функционала. Проект должен демонстрировать использование паттерна Arrange-Act-Assert, моков для изоляции зависимостей, integration-тестов для проверки работы с SQLite, автоматического запуска тестов при каждом коммите и генерации отчётов о покрытии кода.
+🎯 Ключевые концепции
+Unit
+-тестирование — изолированное тестирование компонентов 
+Arrange
+-
+Act
+-
+Assert
+ — структурирование тестов 
+Mocking
+ — подмена зависимостей тестовыми двойниками 
+Integration
+-тесты — проверка взаимодействия компонентов 
+TDD
+ — разработка через тестирование 
+CI
+/
+CD
+ — автоматический запуск тестов 
+Code
+Coverage
+ — анализ покрытия кода
+Название проекта
+RecipeSearchApp
+.
+Tests
+Шаг 1. Создание тестового проекта
+Добавьте новый проект 
+xUnit
+Test
+Project
+ в решение 
+RecipeSearchApp
+:
+📝 Действия в Visual Studio 2026
+1. Правая кнопка на решении → Добавить → Создать проект 
+2. Выберите шаблон «Проект модульных тестов 
+xUnit
+» (.
+NET
+) 
+3. 
+Имя проекта: 
+RecipeSearchApp
+.
+Tests
+4. Целевая платформа: .
+NET
+ 8.0 5. Нажмите «Создать»
+Установите
+необходимые
+ NuGet 
+пакеты
+в
+ RecipeSearchApp.Tests:
+dotnet add package xunit
+dotnet add package xunit.runner.visualstudio
+dotnet add package Moq
+dotnet add package FluentAssertions
+dotnet add package Microsoft.Data.Sqlite
+dotnet add package coverlet.collector
+Добавьте ссылку на основной проект:
+&lt;ItemGroup&gt;
+  &lt;ProjectReference Include="..\RecipeSearchApp\RecipeSearchApp.csproj" /&gt;
+&lt;/ItemGroup&gt;
+Шаг 2. Unit-тесты для Trie (Arrange-Act-Assert)
+Создайте файл Services/TrieTests.cs:
+using Xunit;
+using FluentAssertions;
+using RecipeSearchApp.Services;
+namespace RecipeSearchApp.Tests.Services
+{
+    public class TrieTests
+    {
+        [Fact]
+        public void Insert_SingleWord_ShouldBeSearchable()
+        {
+            // Arrange
+            var trie = new Trie();
+            var word = "Борщ";
+            // Act
+            trie.Insert(word);
+            var results = trie.SearchByPrefix("Бор");
+            // Assert
+            results.Should().Contain(word);
+        }
+        [Fact]
+        public void SearchByPrefix_EmptyPrefix_ShouldReturnEmpty()
+        {
+            // Arrange
+            var trie = new Trie();
+            trie.Insert("Борщ");
+            // Act
+            var results = trie.SearchByPrefix("");
+            // Assert
+            results.Should().BeEmpty();
+        }
+        [Fact]
+        public void SearchByPrefix_NonExistentPrefix_ShouldReturnEmpty()
+        {
+            // Arrange
+            var trie = new Trie();
+            trie.Insert("Борщ");
+            trie.Insert("Блины");
+            // Act
+            var results = trie.SearchByPrefix("Сал");
+            // Assert
+            results.Should().BeEmpty();
+        }
+        [Fact]
+        public void SearchByPrefix_CaseInsensitive_ShouldFindWord()
+        {
+            // Arrange
+            var trie = new Trie();
+            trie.Insert("Борщ");
+            // Act
+            var results = trie.SearchByPrefix("бор");
+            // Assert
+            results.Should().Contain("Борщ");
+        }
+        [Theory]
+        [InlineData("Б", 2)]
+        [InlineData("Бл", 1)]
+        [InlineData("Бо", 1)]
+        public void SearchByPrefix_MultipleWords_ShouldReturnCorrectCount(
+            string prefix,
+            int expectedCount)
+        {
+            // Arrange
+            var trie = new Trie();
+            trie.Insert("Борщ");
+            trie.Insert("Блины");
+            // Act
+            var results = trie.SearchByPrefix(prefix);
+            // Assert
+            results.Should().HaveCount(expectedCount);
+        }
+        [Fact]
+        public void SearchByPrefix_LimitResults_ShouldRespectMaxResults()
+        {
+            // Arrange
+            var trie = new Trie();
+            for (int i = 0; i &lt; 20; i++)
+                trie.Insert($"Блюдо{i}");
+            // Act
+            var results = trie.SearchByPrefix("Блю", maxResults: 5);
+            // Assert
+            results.Should().HaveCountLessOrEqualTo(5);
+        }
+        [Fact]
+        public void Clear_AfterInserts_ShouldRemoveAllWords()
+        {
+            // Arrange
+            var trie = new Trie();
+            trie.Insert("Борщ");
+            trie.Insert("Блины");
+            // Act
+            trie.Clear();
+            var results = trie.SearchByPrefix("Б");
+            // Assert
+            results.Should().BeEmpty();
+        }
+    }
+}
+📌 Паттерн Arrange-Act-Assert
+• 
+Arrange
+ — подготовка данных и объектов 
+• 
+Act
+ — выполнение тестируемого действия 
+• 
+Assert
+ — проверка результата  
+Этот паттерн делает тесты понятными и структурированными.
+Шаг 3. 
+Unit
+-тесты для 
+Bloom
+ фильтра
+Создайте файл Services/BloomFilterTests.cs:
+using Xunit;
+using FluentAssertions;
+using RecipeSearchApp.Services;
+namespace RecipeSearchApp.Tests.Services
+{
+    public class BloomFilterTests
+    {
+        [Fact]
+        public void Add_SingleItem_ShouldBeDetectable()
+        {
+            // Arrange
+            var filter = new BloomFilter(size: 1000, hashFunctionCount: 3);
+            var item = "картофель";
+            // Act
+            filter.Add(item);
+            // Assert
+            filter.MightContain(item).Should().BeTrue();
+        }
+        [Fact]
+        public void MightContain_NonExistentItem_ShouldReturnFalse()
+        {
+            // Arrange
+            var filter = new BloomFilter();
+            filter.Add("морковь");
+            // Act
+            var result = filter.MightContain("капуста");
+            // Assert (может быть false, но не гарантированно)
+            // Bloom фильтр не даёт ложноотрицательных результатов
+            result.Should().BeFalse();
+        }
+        [Fact]
+        public void Add_MultipleItems_AllShouldBeDetectable()
+        {
+            // Arrange
+            var filter = new BloomFilter();
+            var items = new[] { "лук", "чеснок", "перец", "соль" };
+            // Act
+            foreach (var item in items)
+                filter.Add(item);
+            // Assert
+            foreach (var item in items)
+                filter.MightContain(item).Should().BeTrue();
+        }
+        [Fact]
+        public void MightContain_CaseInsensitive_ShouldWork()
+        {
+            // Arrange
+            var filter = new BloomFilter();
+            filter.Add("Томат");
+            // Act &amp; Assert
+            filter.MightContain("томат").Should().BeTrue();
+            filter.MightContain("ТОМАТ").Should().BeTrue();
+        }
+        [Fact]
+        public void Clear_AfterAdding_ShouldRemoveAll()
+        {
+            // Arrange
+            var filter = new BloomFilter();
+            filter.Add("сахар");
+            filter.Add("соль");
+            // Act
+            filter.Clear();
+            // Assert
+            filter.MightContain("сахар").Should().BeFalse();
+            filter.MightContain("соль").Should().BeFalse();
+        }
+        [Fact]
+        public void FalsePositiveRate_ShouldBeLow()
+        {
+            // Arrange
+            var filter = new BloomFilter(size: 10000, hashFunctionCount: 3);
+            var testItems = new[] { "item1", "item2", "item3", "item4", "item5" };
+            foreach (var item in testItems)
+                filter.Add(item);
+            // Act - проверяем 100 случайных слов, которых нет
+            var falsePositives = 0;
+            for (int i = 0; i &lt; 100; i++)
+            {
+                var testWord = $"nonexistent_{i}_{Guid.NewGuid()}";
+                if (filter.MightContain(testWord))
+                    falsePositives++;
+            }
+            // Assert - вероятность ложноположительных &lt; 10%
+            falsePositives.Should().BeLessThan(10);
+        }
+    }
+}
+Шаг 4. 
+Unit
+-тесты для алгоритмов поиска
+Создайте файл Services/StringSearcherTests.cs:
+using Xunit;
+using FluentAssertions;
+using RecipeSearchApp.Services;
+namespace RecipeSearchApp.Tests.Services
+{
+    public class StringSearcherTests
+    {
+        [Theory]
+        [InlineData("Hello World", "World", 1)]
+        [InlineData("test test test", "test", 3)]
+        [InlineData("abcdef", "xyz", 0)]
+        public void KnuthMorrisPratt_ShouldFindCorrectMatches(
+            string text,
+            string pattern,
+            int expectedCount)
+        {
+            // Act
+            var positions = StringSearcher.KnuthMorrisPratt(text, pattern);
+            // Assert
+            positions.Should().HaveCount(expectedCount);
+        }
+        [Fact]
+        public void KnuthMorrisPratt_ShouldFindAtCorrectPosition()
+        {
+            // Arrange
+            var text = "Отварить картофель и морковь";
+            var pattern = "картофель";
+            // Act
+            var positions = StringSearcher.KnuthMorrisPratt(text, pattern);
+            // Assert
+            positions.Should().ContainSingle();
+            positions[0].Should().Be(9);
+        }
+        [Theory]
+        [InlineData("Hello World", "World", 1)]
+        [InlineData("test test test", "test", 3)]
+        [InlineData("abcdef", "xyz", 0)]
+        public void BoyerMoore_ShouldFindCorrectMatches(
+            string text,
+            string pattern,
+            int expectedCount)
+        {
+            // Act
+            var positions = StringSearcher.BoyerMoore(text, pattern);
+            // Assert
+            positions.Should().HaveCount(expectedCount);
+        }
+        [Fact]
+        public void KMP_And_BM_ShouldReturnSameResults()
+        {
+            // Arrange
+            var text = "Нарезать морковь, лук и морковь кубиками";
+            var pattern = "морковь";
+            // Act
+            var kmpResults = StringSearcher.KnuthMorrisPratt(text, pattern);
+            var bmResults = StringSearcher.BoyerMoore(text, pattern);
+            // Assert
+            kmpResults.Should().BeEquivalentTo(bmResults);
+        }
+        [Fact]
+        public void HighlightMatches_ShouldInsertMarkers()
+        {
+            // Arrange
+            var text = "Добавить соль и перец";
+            var pattern = "соль";
+            // Act
+            var highlighted = StringSearcher.HighlightMatches(text, pattern, "KMP");
+            // Assert
+            highlighted.Should().Contain("
+【
+соль
+】
+");
+        }
+        [Fact]
+        public void HighlightMatches_MultipleOccurrences_ShouldHighlightAll()
+        {
+            // Arrange
+            var text = "морковь и морковь";
+            var pattern = "морковь";
+            // Act
+            var highlighted = StringSearcher.HighlightMatches(text, pattern);
+            // Assert
+            highlighted.Should().Contain("
+【
+морковь
+】
+ и 
+【
+морковь
+】
+");
+        }
+        [Fact]
+        public void HighlightMatches_EmptyPattern_ShouldReturnOriginal()
+        {
+            // Arrange
+            var text = "Test text";
+            // Act
+            var result = StringSearcher.HighlightMatches(text, "");
+            // Assert
+            result.Should().Be(text);
+        }
+    }
+}
+Шаг 5. Unit-тесты для InMemoryCache
+Создайте файл Services/InMemoryCacheTests.cs:
+using Xunit;
+using FluentAssertions;
+using RecipeSearchApp.Models;
+using RecipeSearchApp.Services;
+namespace RecipeSearchApp.Tests.Services
+{
+    public class InMemoryCacheTests
+    {
+        [Fact]
+        public void Set_And_Get_ShouldReturnSameRecipe()
+        {
+            // Arrange
+            var cache = new InMemoryCache();
+            var recipe = new Recipe
+            {
+                Id = 1,
+                Title = "Тестовый рецепт",
+                Ingredients = "тест",
+                Instructions = "тест",
+                Category = "Тесты",
+                PrepTimeMinutes = 10
+            };
+            // Act
+            cache.Set(1, recipe);
+            var retrieved = cache.Get(1);
+            // Assert
+            retrieved.Should().NotBeNull();
+            retrieved!.Title.Should().Be("Тестовый рецепт");
+        }
+        [Fact]
+        public void Get_NonExistentKey_ShouldReturnNull()
+        {
+            // Arrange
+            var cache = new InMemoryCache();
+            // Act
+            var result = cache.Get(999);
+            // Assert
+            result.Should().BeNull();
+        }
+        [Fact]
+        public void Set_ExceedingMaxSize_ShouldEvictOldest()
+        {
+            // Arrange
+            var cache = new InMemoryCache(maxSize: 3);
+            for (int i = 1; i &lt;= 4; i++)
+            {
+                cache.Set(i, new Recipe { Id = i, Title = $"Recipe {i}" });
+            }
+            // Act
+            var oldest = cache.Get(1); // Должен быть вытеснен
+            var newest = cache.Get(4);
+            // Assert
+            oldest.Should().BeNull();
+            newest.Should().NotBeNull();
+        }
+        [Fact]
+        public void Get_UpdatesLastAccessTime()
+        {
+            // Arrange
+            var cache = new InMemoryCache(maxSize: 2);
+            cache.Set(1, new Recipe { Id = 1, Title = "First" });
+            cache.Set(2, new Recipe { Id = 2, Title = "Second" });
+            // Act
+            cache.Get(1); // Обновляет LastAccessTime для ключа 1
+            cache.Set(3, new Recipe { Id = 3, Title = "Third" });
+            // Assert
+            cache.Get(1).Should().NotBeNull(); // Не вытеснен
+            cache.Get(2).Should().BeNull();    // Вытеснен как самый старый
+        }
+        [Fact]
+        public void Clear_ShouldRemoveAllEntries()
+        {
+            // Arrange
+            var cache = new InMemoryCache();
+            cache.Set(1, new Recipe { Id = 1, Title = "Test" });
+            cache.Set(2, new Recipe { Id = 2, Title = "Test2" });
+            // Act
+            cache.Clear();
+            // Assert
+            cache.Get(1).Should().BeNull();
+            cache.Get(2).Should().BeNull();
+        }
+        [Fact]
+        public void GetStatistics_ShouldReturnCorrectData()
+        {
+            // Arrange
+            var cache = new InMemoryCache();
+            cache.Set(1, new Recipe { Id = 1, Title = "Test" });
+            // Act
+            cache.Get(1);
+            cache.Get(1);
+            var stats = cache.GetStatistics();
+            // Assert
+            stats["CachedItems"].Should().Be(1);
+            stats["TotalHits"].Should().Be(2);
+        }
+        [Fact]
+        public async Task Get_ExpiredEntry_ShouldReturnNull()
+        {
+            // Arrange
+            var cache = new InMemoryCache(expirationMinutes: 0); // 0 минут = мгновенное истечение
+            cache.Set(1, new Recipe { Id = 1, Title = "Test" });
+            // Act
+            await Task.Delay(100); // Небольшая задержка
+            var result = cache.Get(1);
+            // Assert
+            result.Should().BeNull();
+        }
+    }
+}
+Шаг 6. Integration-тесты для DatabaseService
+Создайте файл Integration/DatabaseServiceIntegrationTests.cs:
+using Xunit;
+using FluentAssertions;
+using RecipeSearchApp.Models;
+using RecipeSearchApp.Services;
+using System.IO;
+namespace RecipeSearchApp.Tests.Integration
+{
+    public class DatabaseServiceIntegrationTests : IDisposable
+    {
+        private readonly string _testDbPath;
+        private readonly DatabaseService _database;
+        public DatabaseServiceIntegrationTests()
+        {
+            // Arrange - создаём временную БД для тестов
+            _testDbPath = Path.Combine(
+                Path.GetTempPath(),
+                $"test_recipes_{Guid.NewGuid()}.db"
+            );
+            // Заменяем путь к БД в DatabaseService (требуется рефакторинг)
+            // Временно используем реальную БД
+            _database = new DatabaseService();
+        }
+        [Fact]
+        public async Task AddRecipeAsync_ShouldPersistToDatabase()
+        {
+            // Arrange
+            var recipe = new Recipe
+            {
+                Title = "Тестовый рецепт",
+                Ingredients = "ингредиент1, ингредиент2",
+                Instructions = "Шаг 1. Шаг 2.",
+                Category = "Тесты",
+                PrepTimeMinutes = 15
+            };
+            // Act
+            await _database.AddRecipeAsync(recipe);
+            var allRecipes = await _database.GetAllRecipesAsync();
+            // Assert
+            allRecipes.Should().Contain(r =&gt; r.Title == "Тестовый рецепт");
+        }
+        [Fact]
+        public async Task FullTextSearchAsync_ShouldFindByTitle()
+        {
+            // Arrange
+            var recipe = new Recipe
+            {
+                Title = "Уникальный борщ",
+                Ingredients = "свёкла",
+                Instructions = "варить",
+                Category = "Супы",
+                PrepTimeMinutes = 60
+            };
+            await _database.AddRecipeAsync(recipe);
+            // Act
+            var results = await _database.FullTextSearchAsync("Уникальный");
+            // Assert
+            results.Should().Contain(r =&gt; r.Title.Contains("Уникальный"));
+        }
+        [Fact]
+        public async Task FullTextSearchAsync_ShouldFindByIngredients()
+        {
+            // Arrange
+            var recipe = new Recipe
+            {
+                Title = "Салат",
+                Ingredients = "редкий_ингредиент_xyz",
+                Instructions = "смешать",
+                Category = "Салаты",
+                PrepTimeMinutes = 10
+            };
+            await _database.AddRecipeAsync(recipe);
+            // Act
+            var results = await _database.FullTextSearchAsync("редкий_ингредиент_xyz");
+            // Assert
+            results.Should().Contain(r =&gt; r.Ingredients.Contains("редкий_ингредиент_xyz"));
+        }
+        [Fact]
+        public async Task GetRecipeByIdAsync_ShouldReturnCorrectRecipe()
+        {
+            // Arrange
+            var allRecipes = await _database.GetAllRecipesAsync();
+            if (allRecipes.Count == 0)
+            {
+                await _database.AddRecipeAsync(new Recipe
+                {
+                    Title = "Test",
+                    Ingredients = "test",
+                    Instructions = "test",
+                    Category = "Test",
+                    PrepTimeMinutes = 1
+                });
+                allRecipes = await _database.GetAllRecipesAsync();
+            }
+            var existingId = allRecipes[0].Id;
+            // Act
+            var recipe = await _database.GetRecipeByIdAsync(existingId);
+            // Assert
+            recipe.Should().NotBeNull();
+            recipe!.Id.Should().Be(existingId);
+        }
+        [Fact]
+        public async Task GetRecipeByIdAsync_IncreasesViewCount()
+        {
+            // Arrange
+            var allRecipes = await _database.GetAllRecipesAsync();
+            var recipe = allRecipes.FirstOrDefault();
+            if (recipe == null)
+            {
+                await _database.AddRecipeAsync(new Recipe { Title = "Test" });
+                allRecipes = await _database.GetAllRecipesAsync();
+                recipe = allRecipes[0];
+            }
+            var initialViewCount = recipe.ViewCount;
+            // Act
+            await _database.GetRecipeByIdAsync(recipe.Id);
+            var updated = await _database.GetRecipeByIdAsync(recipe.Id);
+            // Assert
+            updated!.ViewCount.Should().BeGreaterThan(initialViewCount);
+        }
+        [Fact]
+        public void GetTitleSuggestions_ShouldReturnMatches()
+        {
+            // Act
+            var suggestions = _database.GetTitleSuggestions("Бор");
+            // Assert
+            suggestions.Should().Contain(s =&gt;
+                s.StartsWith("Бор", StringComparison.OrdinalIgnoreCase)
+            );
+        }
+        [Fact]
+        public void MightHaveIngredient_ExistingIngredient_ShouldReturnTrue()
+        {
+            // Act
+            var result = _database.MightHaveIngredient("картофель");
+            // Assert
+            result.Should().BeTrue();
+        }
+        public void Dispose()
+        {
+            // Cleanup - удаляем тестовую БД
+            if (File.Exists(_testDbPath))
+                File.Delete(_testDbPath);
+        }
+    }
+}
+🔧 Integration тесты
+Integration
+-тесты проверяют взаимодействие компонентов, включая реальную 
+БД. Используйте IDisposable для очистки ресурсов после тестов.
+Шаг 7. Моки и изоляция зависимостей
+Создайте файл ViewModels/MainViewModelTests.cs с использованием Moq:
+using Xunit;
+using FluentAssertions;
+using Moq;
+using RecipeSearchApp.ViewModels;
+using RecipeSearchApp.Models;
+using RecipeSearchApp.Services;
+namespace RecipeSearchApp.Tests.ViewModels
+{
+    public class MainViewModelTests
+    {
+        // Примечание: MainViewModel требует рефакторинга для внедрения зависимостей
+        // Этот тест демонстрирует подход с моками
+        [Fact]
+        public void SearchQuery_WhenChanged_ShouldUpdateSuggestions()
+        {
+            // Arrange
+            var mockDatabase = new Mock&lt;IDatabaseService&gt;();
+            mockDatabase
+                .Setup(db =&gt; db.GetTitleSuggestions(It.IsAny&lt;string&gt;()))
+                .Returns(new List&lt;string&gt; { "Борщ", "Блины" });
+            // Для тестирования нужно сделать DatabaseService инжектируемым
+            // var viewModel = new MainViewModel(mockDatabase.Object);
+            // Act
+            // viewModel.SearchQuery = "Б";
+            // Assert
+            // viewModel.Suggestions.Should().HaveCount(2);
+        }
+    }
+}
+// Интерфейс для DatabaseService (добавить в основной проект)
+public interface IDatabaseService
+{
+    Task&lt;List&lt;Recipe&gt;&gt; FullTextSearchAsync(string query);
+    List&lt;string&gt; GetTitleSuggestions(string prefix);
+    bool MightHaveIngredient(string ingredient);
+    Task&lt;Recipe?&gt; GetRecipeByIdAsync(int id);
+    Task&lt;List&lt;Recipe&gt;&gt; GetAllRecipesAsync();
+    Task AddRecipeAsync(Recipe recipe);
+    Dictionary&lt;string, object&gt; GetCacheStatistics();
+}
+Шаг 8. Рефакторинг для тестируемости
+Обновите DatabaseService.cs для поддержки Dependency Injection:
+public interface IDatabaseService
+{
+    Task&lt;List&lt;Recipe&gt;&gt; FullTextSearchAsync(string query);
+    List&lt;string&gt; GetTitleSuggestions(string prefix);
+    bool MightHaveIngredient(string ingredient);
+    Task&lt;Recipe?&gt; GetRecipeByIdAsync(int id);
+    Task&lt;List&lt;Recipe&gt;&gt; GetAllRecipesAsync();
+    Task AddRecipeAsync(Recipe recipe);
+    Dictionary&lt;string, object&gt; GetCacheStatistics();
+}
+public class DatabaseService : IDatabaseService
+{
+    private readonly string _dbPath;
+    private readonly Trie _titleTrie = new();
+    private readonly BloomFilter _ingredientFilter = new();
+    private readonly InMemoryCache _cache = new();
+    // Конструктор с возможностью указать путь к БД (для тестов)
+    public DatabaseService(string? customDbPath = null)
+    {
+        if (customDbPath != null)
+        {
+            _dbPath = customDbPath;
+        }
+        else
+        {
+            var folder = Windows.Storage.ApplicationData.Current.LocalFolder.Path;
+            _dbPath = Path.Combine(folder, "recipes.db");
+        }
+        InitializeDatabaseAsync().Wait();
+    }
+    // Остальной код без изменений...
+}
+Шаг 9. Test-Driven Development (TDD)
+Добавим новый функционал методом TDD: рейтинг рецептов. Сначала пишем тест:
+// Шаг 1: Пишем тест (Red)
+[Fact]
+public async Task AddRating_ShouldUpdateAverageRating()
+{
+    // Arrange
+    var dbPath = Path.Combine(
+        Path.GetTempPath(),
+        $"tdd_test_{Guid.NewGuid()}.db"
+    );
+    var database = new DatabaseService(dbPath);
+    var recipe = new Recipe
+    {
+        Title = "Тест",
+        Ingredients = "тест",
+        Instructions = "тест",
+        Category = "Тест",
+        PrepTimeMinutes = 10
+    };
+    await database.AddRecipeAsync(recipe);
+    var added = (await database.GetAllRecipesAsync()).Last();
+    // Act
+    await database.AddRatingAsync(added.Id, 5);
+    await database.AddRatingAsync(added.Id, 4);
+    var updated = await database.GetRecipeByIdAsync(added.Id);
+    // Assert
+    updated!.AverageRating.Should().Be(4.5);
+    updated.RatingCount.Should().Be(2);
+    File.Delete(dbPath);
+}
+// Шаг 2: Добавляем поля в Recipe.cs (Green)
+public class Recipe
+{
+    public int Id { get; set; }
+    public string Title { get; set; } = string.Empty;
+    public string Ingredients { get; set; } = string.Empty;
+    public string Instructions { get; set; } = string.Empty;
+    public string Category { get; set; } = string.Empty;
+    public int PrepTimeMinutes { get; set; }
+    public DateTime CreatedAt { get; set; } = DateTime.Now;
+    public int ViewCount { get; set; }
+    // Новые поля для рейтинга
+    public double AverageRating { get; set; }
+    public int RatingCount { get; set; }
+}
+// Шаг 3: Реализуем метод AddRatingAsync в DatabaseService (Green)
+public async Task AddRatingAsync(int recipeId, int rating)
+{
+    await Task.Run(() =&gt;
+    {
+        using var connection = new SqliteConnection($"Data Source={_dbPath}");
+        connection.Open();
+        // Получаем текущие значения
+        using var selectCmd = connection.CreateCommand();
+        selectCmd.CommandText =
+            "SELECT AverageRating, RatingCount FROM Recipes WHERE Id = @id";
+        selectCmd.Parameters.AddWithValue("@id", recipeId);
+        using var reader = selectCmd.ExecuteReader();
+        if (!reader.Read()) return;
+        var currentAvg = reader.GetDouble(0);
+        var currentCount = reader.GetInt32(1);
+        reader.Close();
+        // Вычисляем новый средний рейтинг
+        var newCount = currentCount + 1;
+        var newAvg = ((currentAvg * currentCount) + rating) / newCount;
+        // Обновляем
+        using var updateCmd = connection.CreateCommand();
+        updateCmd.CommandText = @"
+            UPDATE Recipes
+            SET AverageRating = @avg, RatingCount = @count
+            WHERE Id = @id";
+        updateCmd.Parameters.AddWithValue("@avg", newAvg);
+        updateCmd.Parameters.AddWithValue("@count", newCount);
+        updateCmd.Parameters.AddWithValue("@id", recipeId);
+        updateCmd.ExecuteNonQuery();
+    });
+}
+// Шаг 4: Запускаем тест - должен пройти (Green)
+// Шаг 5: Рефакторинг - оптимизируем код, убираем дублирование
+🔄 TDD Цикл: Red → Green → Refactor
+1. 
+Red
+ — пишем падающий тест 
+2. 
+Green
+ — пишем минимальный код для прохождения теста 
+3. 
+Refactor
+ — улучшаем код без изменения функциональности  
+Тесты становятся документацией и гарантией корректности.
+Шаг 10. Настройка 
+GitHub
+Actions
+ для 
+CI
+/
+CD
+Создайте файл .github/workflows/dotnet.yml в корне репозитория:
+name: .NET CI
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  build-and-test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --no-restore --configuration Release
+      - name: Run Tests
+        run: dotnet test --no-build --configuration Release --verbosity normal --collect:"XPlat Code Coverage"
+      - name: Upload Coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          files: '**/coverage.cobertura.xml'
+          fail_ci_if_error: true
+      - name: Generate Coverage Report
+        run: |
+          dotnet tool install --global dotnet-reportgenerator-globaltool
+          reportgenerator -reports:**/coverage.cobertura.xml -targetdir:coverage -reporttypes:Html
+      - name: Upload Coverage Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage/
+Шаг 11. Настройка Code Coverage
+Добавьте в RecipeSearchApp.Tests.csproj настройки покрытия кода:
+&lt;Project Sdk="Microsoft.NET.Sdk"&gt;
+  &lt;PropertyGroup&gt;
+    &lt;TargetFramework&gt;net8.0-windows10.0.19041.0&lt;/TargetFramework&gt;
+    &lt;Nullable&gt;enable&lt;/Nullable&gt;
+    &lt;IsPackable&gt;false&lt;/IsPackable&gt;
+  &lt;/PropertyGroup&gt;
+  &lt;ItemGroup&gt;
+    &lt;PackageReference Include="coverlet.collector" Version="6.0.0" /&gt;
+    &lt;PackageReference Include="FluentAssertions" Version="6.12.0" /&gt;
+    &lt;PackageReference Include="Microsoft.Data.Sqlite" Version="9.0.0" /&gt;
+    &lt;PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.10.0" /&gt;
+    &lt;PackageReference Include="Moq" Version="4.20.70" /&gt;
+    &lt;PackageReference Include="xunit" Version="2.8.0" /&gt;
+    &lt;PackageReference Include="xunit.runner.visualstudio" Version="2.8.0" /&gt;
+  &lt;/ItemGroup&gt;
+  &lt;ItemGroup&gt;
+    &lt;ProjectReference Include="..\RecipeSearchApp\RecipeSearchApp.csproj" /&gt;
+  &lt;/ItemGroup&gt;
+&lt;/Project&gt;
+Запуск тестов с покрытием кода:
+dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura
+# Генерация HTML отчёта
+dotnet tool install -g dotnet-reportgenerator-globaltool
+reportgenerator -reports:coverage.cobertura.xml -targetdir:coverage -reporttypes:Html
+Шаг 12. Запуск тестов в 
+Visual
+Studio
+ 2026
+▶️ Выполнение тестов в VS 2026
+1. Меню «Тест» → «Запустить все тесты» (
+Ctrl
++
+R
+, 
+A
+) 
+2. Окно «Обозреватель тестов» покажет результаты 
+3. Зелёная галочка — тест пройден 
+4. Красный крестик — тест провален 
+5. Двойной щелчок по тесту откроет код 
+6. 
+Меню «Тест» → «Анализировать покрытие кода» для отчёта
+📊 Интерпретация Code Coverage
+• 80%+ — отлично (рекомендуемый минимум) 
+• 60-80% — хорошо • 40-60% — удовлетворительно 
+• &lt;40% — недостаточно  
+Важно: 100% покрытие не гарантирует отсутствие багов, но низкое покрытие гарантирует их наличие.
+Шаг 13. Полный файл RecipeSearchApp.Tests.csproj
+&lt;Project Sdk="Microsoft.NET.Sdk"&gt;
+  &lt;PropertyGroup&gt;
+    &lt;TargetFramework&gt;net8.0-windows10.0.19041.0&lt;/TargetFramework&gt;
+    &lt;Nullable&gt;enable&lt;/Nullable&gt;
+    &lt;IsPackable&gt;false&lt;/IsPackable&gt;
+    &lt;IsTestProject&gt;true&lt;/IsTestProject&gt;
+  &lt;/PropertyGroup&gt;
+  &lt;ItemGroup&gt;
+    &lt;PackageReference Include="coverlet.collector" Version="6.0.0"&gt;
+      &lt;IncludeAssets&gt;runtime; build; native; contentfiles; analyzers; buildtransitive&lt;/IncludeAssets&gt;
+      &lt;PrivateAssets&gt;all&lt;/PrivateAssets&gt;
+    &lt;/PackageReference&gt;
+    &lt;PackageReference Include="FluentAssertions" Version="6.12.0" /&gt;
+    &lt;PackageReference Include="Microsoft.Data.Sqlite" Version="9.0.0" /&gt;
+    &lt;PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.10.0" /&gt;
+    &lt;PackageReference Include="Moq" Version="4.20.70" /&gt;
+    &lt;PackageReference Include="xunit" Version="2.8.0" /&gt;
+    &lt;PackageReference Include="xunit.runner.visualstudio" Version="2.8.0"&gt;
+      &lt;IncludeAssets&gt;runtime; build; native; contentfiles; analyzers; buildtransitive&lt;/IncludeAssets&gt;
+      &lt;PrivateAssets&gt;all&lt;/PrivateAssets&gt;
+    &lt;/PackageReference&gt;
+  &lt;/ItemGroup&gt;
+  &lt;ItemGroup&gt;
+    &lt;ProjectReference Include="..\RecipeSearchApp\RecipeSearchApp.csproj" /&gt;
+  &lt;/ItemGroup&gt;
+&lt;/Project&gt;
+✅ Результаты практической работы
+Вы создали:
+• Полный набор 
+unit
+-тестов для всех сервисов 
+• 
+Integration
+-тесты для работы с БД 
+• Примеры использования моков с 
+Moq
+• Рефакторинг для улучшения тестируемости 
+• Пример 
+TDD
+-разработки (рейтинг рецептов) 
+• 
+CI
+/
+CD
+pipeline
+ с 
+GitHub
+Actions
+• Настройку 
+Code
+Coverage
+• Автоматическую генерацию отчётов
+ Основные метрики качества:
+• 
+Code
+Coverage
+: 80%+ 
+• Все тесты проходят (
+Green
+) 
+• 
+CI
+/
+CD
+ автоматически запускается при каждом коммите 
+• Отчёты о покрытии генерируются автоматически
+🎓 Ключевые концепции тестирования
+• 
+Arrange
+-
+Act
+-
+Assert
+ — структура каждого теста 
+• 
+Unit
+vs
+Integration
+ — изоляция 
+vs
+ взаимодействие 
+• 
+Mocking
+ — замена зависимостей для изоляции 
+• 
+TDD
+ — тесты перед кодом, код под тесты 
+• 
+CI
+/
+CD
+ — автоматизация проверки качества 
+• 
+Code
+Coverage
+ — метрика качества тестирования 
+• Рефакторинг — улучшение кода без изменения поведения

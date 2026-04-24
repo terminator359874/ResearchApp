@@ -1,0 +1,86 @@
+{
+  "version": 2,
+  "dgSpecHash": "Jj5iJQo9IBE=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\pvt-9-23\\source\\repos\\winui\\RecipeSearchApp\\RecipeSearchApp (Package)\\RecipeSearchApp (Package).wapproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\pvt-9-23\\.nuget\\packages\\harfbuzzsharp\\8.3.1.1\\harfbuzzsharp.8.3.1.1.nupkg.sha512",
+    "C:\\Users\\pvt-9-23\\.nuget\\packages\\harfbuzzsharp.nativeassets.macos\\8.3.1.1\\harfbuzzsharp.nativeassets.macos.8.3.1.1.nupkg.sha512",
+    "C:\\Users\\pvt-9-23\\.nuget\\packages\\harfbuzzsharp.nativeassets.win32\\8.3.1.1\\harfbuzzsharp.nativeassets.win32.8.3.1.1.nupkg.sha512",
+    "C:\\Users\\pvt-9-23\\.nuget\\packages\\livechartscore\\2.0.0\\livechartscore.2.0.0.nupkg.sha512",
+    "C:\\Users\\pvt-9-23\\.nuget\\packages\\livechartscore.skiasharpview\\2.0.0\\livechartscore.skiasharpview.2.0.0.nupkg.sha512",
+    "C:\\Users\\pvt-9-23\\.nuget\\packages\\livechartscore.skiasharpview.winui\\2.0.0\\livechartscore.skiasharpview.winui.2.0.0.nupkg.sha512",
+    "C:\\Users\\pvt-9-23\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\8.0.0\\microsoft.bcl.asyncinterfaces.8.0.0.nupkg.sha512",
+    "C:\\Users\\pvt-9-23\\.nuget\\packages\\microsoft.bcl.numerics\\9.0.0\\microsoft.bcl.numerics.9.0.0.nupkg.sha512",
+    "C:\\Users\\pvt-9-23\\.nuget\\packages\\microsoft.data.sqlite\\10.0.6\\microsoft.data.sqlite.10.0.6.nupkg.sha512",
+    "C:\\Users\\pvt-9-23\\.nuget\\packages\\microsoft.data.sqlite.core\\10.0.6\\microsoft.data.sqlite.core.10.0.6.nupkg.sha512",
+    "C:\\Users\\pvt-9-23\\.nuget\\packages\\microsoft.web.webview2\\1.0.3179.45\\microsoft.web.webview2.1.0.3179.45.nupkg.sha512",
+    "C:\\Users\\pvt-9-23\\.nuget\\packages\\microsoft.windows.sdk.buildtools\\10.0.28000.1721\\microsoft.windows.sdk.buildtools.10.0.28000.1721.nupkg.sha512",
+    "C:\\Users\\pvt-9-23\\.nuget\\packages\\microsoft.windows.sdk.buildtools.msix\\1.7.20250829.1\\microsoft.windows.sdk.buildtools.msix.1.7.20250829.1.nupkg.sha512",
+    "C:\\Users\\pvt-9-23\\.nuget\\packages\\microsoft.windowsappsdk\\1.8.260317003\\microsoft.windowsappsdk.1.8.260317003.nupkg.sha512",
+    "C:\\Users\\pvt-9-23\\.nuget\\packages\\microsoft.windowsappsdk.ai\\1.8.53\\microsoft.windowsappsdk.ai.1.8.53.nupkg.sha512",
+    "C:\\Users\\pvt-9-23\\.nuget\\packages\\microsoft.windowsappsdk.base\\1.8.251216001\\microsoft.windowsappsdk.base.1.8.251216001.nupkg.sha512",
+    "C:\\Users\\pvt-9-23\\.nuget\\packages\\microsoft.windowsappsdk.dwrite\\1.8.25122902\\microsoft.windowsappsdk.dwrite.1.8.25122902.nupkg.sha512",
+    "C:\\Users\\pvt-9-23\\.nuget\\packages\\microsoft.windowsappsdk.foundation\\1.8.260222000\\microsoft.windowsappsdk.foundation.1.8.260222000.nupkg.sha512",
+    "C:\\Users\\pvt-9-23\\.nuget\\packages\\microsoft.windowsappsdk.interactiveexperiences\\1.8.260125001\\microsoft.windowsappsdk.interactiveexperiences.1.8.260125001.nupkg.sha512",
+    "C:\\Users\\pvt-9-23\\.nuget\\packages\\microsoft.windowsappsdk.ml\\1.8.2141\\microsoft.windowsappsdk.ml.1.8.2141.nupkg.sha512",
+    "C:\\Users\\pvt-9-23\\.nuget\\packages\\microsoft.windowsappsdk.runtime\\1.8.260317003\\microsoft.windowsappsdk.runtime.1.8.260317003.nupkg.sha512",
+    "C:\\Users\\pvt-9-23\\.nuget\\packages\\microsoft.windowsappsdk.widgets\\1.8.251231004\\microsoft.windowsappsdk.widgets.1.8.251231004.nupkg.sha512",
+    "C:\\Users\\pvt-9-23\\.nuget\\packages\\microsoft.windowsappsdk.winui\\1.8.260224000\\microsoft.windowsappsdk.winui.1.8.260224000.nupkg.sha512",
+    "C:\\Users\\pvt-9-23\\.nuget\\packages\\skiasharp\\3.119.0\\skiasharp.3.119.0.nupkg.sha512",
+    "C:\\Users\\pvt-9-23\\.nuget\\packages\\skiasharp.harfbuzz\\3.119.0\\skiasharp.harfbuzz.3.119.0.nupkg.sha512",
+    "C:\\Users\\pvt-9-23\\.nuget\\packages\\skiasharp.nativeassets.macos\\3.119.0\\skiasharp.nativeassets.macos.3.119.0.nupkg.sha512",
+    "C:\\Users\\pvt-9-23\\.nuget\\packages\\skiasharp.nativeassets.win32\\3.119.0\\skiasharp.nativeassets.win32.3.119.0.nupkg.sha512",
+    "C:\\Users\\pvt-9-23\\.nuget\\packages\\skiasharp.nativeassets.winui\\3.119.0\\skiasharp.nativeassets.winui.3.119.0.nupkg.sha512",
+    "C:\\Users\\pvt-9-23\\.nuget\\packages\\skiasharp.views.winui\\3.119.0\\skiasharp.views.winui.3.119.0.nupkg.sha512",
+    "C:\\Users\\pvt-9-23\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.1.11\\sqlitepclraw.bundle_e_sqlite3.2.1.11.nupkg.sha512",
+    "C:\\Users\\pvt-9-23\\.nuget\\packages\\sqlitepclraw.core\\2.1.11\\sqlitepclraw.core.2.1.11.nupkg.sha512",
+    "C:\\Users\\pvt-9-23\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.1.11\\sqlitepclraw.lib.e_sqlite3.2.1.11.nupkg.sha512",
+    "C:\\Users\\pvt-9-23\\.nuget\\packages\\sqlitepclraw.provider.e_sqlite3\\2.1.11\\sqlitepclraw.provider.e_sqlite3.2.1.11.nupkg.sha512",
+    "C:\\Users\\pvt-9-23\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
+    "C:\\Users\\pvt-9-23\\.nuget\\packages\\system.memory\\4.5.5\\system.memory.4.5.5.nupkg.sha512",
+    "C:\\Users\\pvt-9-23\\.nuget\\packages\\system.numerics.tensors\\9.0.0\\system.numerics.tensors.9.0.0.nupkg.sha512",
+    "C:\\Users\\pvt-9-23\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "C:\\Users\\pvt-9-23\\.nuget\\packages\\system.text.encodings.web\\8.0.0\\system.text.encodings.web.8.0.0.nupkg.sha512",
+    "C:\\Users\\pvt-9-23\\.nuget\\packages\\system.text.json\\8.0.5\\system.text.json.8.0.5.nupkg.sha512",
+    "C:\\Users\\pvt-9-23\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "message": "Пакет \"LiveChartsCore.SkiaSharpView.WinUI 2.0.0\" был восстановлен с помощью \"net8.0-windows10.0.19041, .NETCoreApp,Version=v3.1, .NETCoreApp,Version=v3.0, .NETCoreApp,Version=v2.0, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1, net10.0-windows10.0.19041, .NETFramework,Version=v4.6.1\", а не целевой платформы проекта \"UAP,Version=v10.0.17763\". Этот пакет может быть не полностью совместим с вашим проектом.",
+      "projectPath": "C:\\Users\\pvt-9-23\\source\\repos\\winui\\RecipeSearchApp\\RecipeSearchApp (Package)\\RecipeSearchApp (Package).wapproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\pvt-9-23\\source\\repos\\winui\\RecipeSearchApp\\RecipeSearchApp (Package)\\RecipeSearchApp (Package).wapproj",
+      "libraryId": "LiveChartsCore.SkiaSharpView.WinUI",
+      "targetGraphs": [
+        "UAP,Version=v10.0.17763"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "message": "Пакет \"SkiaSharp.NativeAssets.WinUI 3.119.0\" был восстановлен с помощью \"net8.0-windows10.0.19041, .NETCoreApp,Version=v3.1, .NETCoreApp,Version=v3.0, .NETCoreApp,Version=v2.0, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1, net10.0-windows10.0.19041, .NETFramework,Version=v4.6.1\", а не целевой платформы проекта \"UAP,Version=v10.0.17763\". Этот пакет может быть не полностью совместим с вашим проектом.",
+      "projectPath": "C:\\Users\\pvt-9-23\\source\\repos\\winui\\RecipeSearchApp\\RecipeSearchApp (Package)\\RecipeSearchApp (Package).wapproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\pvt-9-23\\source\\repos\\winui\\RecipeSearchApp\\RecipeSearchApp (Package)\\RecipeSearchApp (Package).wapproj",
+      "libraryId": "SkiaSharp.NativeAssets.WinUI",
+      "targetGraphs": [
+        "UAP,Version=v10.0.17763"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "message": "Пакет \"SkiaSharp.Views.WinUI 3.119.0\" был восстановлен с помощью \"net8.0-windows10.0.19041, .NETCoreApp,Version=v3.1, .NETCoreApp,Version=v3.0, .NETCoreApp,Version=v2.0, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1, net10.0-windows10.0.19041, .NETFramework,Version=v4.6.1\", а не целевой платформы проекта \"UAP,Version=v10.0.17763\". Этот пакет может быть не полностью совместим с вашим проектом.",
+      "projectPath": "C:\\Users\\pvt-9-23\\source\\repos\\winui\\RecipeSearchApp\\RecipeSearchApp (Package)\\RecipeSearchApp (Package).wapproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\pvt-9-23\\source\\repos\\winui\\RecipeSearchApp\\RecipeSearchApp (Package)\\RecipeSearchApp (Package).wapproj",
+      "libraryId": "SkiaSharp.Views.WinUI",
+      "targetGraphs": [
+        "UAP,Version=v10.0.17763"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window
+    x:Class="RecipeSearchApp.Views.DiagnosticsWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:lvc="using:LiveChartsCore.SkiaSharpView.WinUI"
+    mc:Ignorable="d"
+    Title="Диагностика и профилирование">
+
+    <Grid x:ConnectionId='2' Padding="20" x:Name="RootGrid">
+        <TabView>
+            <!-- Вкладка Строковый Поиск (Задача 2) -->
+            <TabViewItem Header="Поиск (КМП vs БМ)">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button Content="Запустить Бенчмарк Строк" Command="{Binding RunStringSearchCommand}" Margin="0,0,0,10"/>
+                    <ListView Grid.Row="1" ItemsSource="{Binding StringSearchResults}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnSpacing="10" Margin="0,5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="250"/>
+                                        <ColumnDefinition Width="150"/>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="100"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding TestName}" FontWeight="Bold"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding Pattern}"/>
+                                    <TextBlock Grid.Column="2"><Run Text="КМП: "/><Run Text="{Binding KMPTimeMs}"/><Run Text=" мс"/></TextBlock>
+                                    <TextBlock Grid.Column="3"><Run Text="БМ: "/><Run Text="{Binding BMTimeMs}"/><Run Text=" мс"/></TextBlock>
+                                    <TextBlock Grid.Column="4" Foreground="Green"><Run Text="Лучший: "/><Run Text="{Binding FasterAlgorithm}"/></TextBlock>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <ListView.Header>
+                            <Grid ColumnSpacing="10" Margin="12,5" BorderBrush="Gray" BorderThickness="0,0,0,1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="250"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="100"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Тест" FontWeight="SemiBold"/>
+                                <TextBlock Grid.Column="1" Text="Паттерн" FontWeight="SemiBold"/>
+                                <TextBlock Grid.Column="2" Text="КМП (мс)" FontWeight="SemiBold"/>
+                                <TextBlock Grid.Column="3" Text="БМ (мс)" FontWeight="SemiBold"/>
+                                <TextBlock Grid.Column="4" Text="Быстрее" FontWeight="SemiBold"/>
+                            </Grid>
+                        </ListView.Header>
+                    </ListView>
+                </Grid>
+            </TabViewItem>
+
+            <!-- Вкладка Bloom Filter (Задача 3) -->
+            <TabViewItem Header="Bloom Filter (FP Анализ)">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button Content="Запустить Анализ Bloom-фильтра" Command="{Binding RunBloomCommand}" Margin="0,0,0,10"/>
+                    
+                    <ListView Grid.Row="1" ItemsSource="{Binding BloomFilterResults}" MaxHeight="200" Margin="0,0,0,10">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnSpacing="10" Margin="0,5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="150"/>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="150"/>
+                                        <ColumnDefinition Width="100"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock><Run Text="Размер: "/><Run Text="{Binding FilterSize}"/><Run Text=" бит"/></TextBlock>
+                                    <TextBlock Grid.Column="1"><Run Text="Хеши: "/><Run Text="{Binding HashCount}"/></TextBlock>
+                                    <TextBlock Grid.Column="2"><Run Text="Ложных: "/><Run Text="{Binding FalsePositives}"/><Run Text=" / 1000"/></TextBlock>
+                                    <TextBlock Grid.Column="3"><Run Text="FP Rate: "/><Run Text="{Binding FalsePositiveRate}"/></TextBlock>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    
+                    <lvc:CartesianChart Grid.Row="2" Series="{Binding BloomSeries}" XAxes="{Binding BloomXAxes}" />
+                </Grid>
+            </TabViewItem>
+
+            <!-- Вкладка FTS5 (Задача 4) -->
+            <TabViewItem Header="Тестирование FTS5">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button Content="Запустить тесты FTS5" Command="{Binding RunFts5Command}" Margin="0,0,0,10"/>
+                    <ListView Grid.Row="1" ItemsSource="{Binding Fts5Results}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnSpacing="10" Margin="0,5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="180"/>
+                                        <ColumnDefinition Width="250"/>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="100"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding QueryType}" FontWeight="SemiBold"/>
+                                    <TextBlock Grid.Column="1" Text="{Binding Syntax}"/>
+                                    <TextBlock Grid.Column="2"><Run Text="Найдено: "/><Run Text="{Binding ResultCount}"/></TextBlock>
+                                    <TextBlock Grid.Column="3"><Run Text="Время: "/><Run Text="{Binding TimeMs}"/><Run Text=" мс"/></TextBlock>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                         <ListView.Header>
+                            <Grid ColumnSpacing="10" Margin="12,5" BorderBrush="Gray" BorderThickness="0,0,0,1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="180"/>
+                                    <ColumnDefinition Width="250"/>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="100"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Тип запроса" FontWeight="SemiBold"/>
+                                <TextBlock Grid.Column="1" Text="Синтаксис FTS5" FontWeight="SemiBold"/>
+                                <TextBlock Grid.Column="2" Text="Результатов" FontWeight="SemiBold"/>
+                                <TextBlock Grid.Column="3" Text="Время (мс)" FontWeight="SemiBold"/>
+                            </Grid>
+                        </ListView.Header>
+                    </ListView>
+                </Grid>
+            </TabViewItem>
+
+            <!-- Вкладка Trie (Задача 6) -->
+            <TabViewItem Header="Сравнение Trie">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button Content="Запустить Анализ Памяти Trie" Command="{Binding RunTrieCommand}" Margin="0,0,0,10"/>
+                    <ListView Grid.Row="1" ItemsSource="{Binding TrieResults}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnSpacing="10" Margin="0,5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="150"/>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="100"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding Type}" FontWeight="SemiBold"/>
+                                    <TextBlock Grid.Column="1"><Run Text="Слов: "/><Run Text="{Binding WordCount}"/></TextBlock>
+                                    <TextBlock Grid.Column="2"><Run Text="Узлов: "/><Run Text="{Binding NodeCount}"/></TextBlock>
+                                    <TextBlock Grid.Column="3"><Run Text="~"/><Run Text="{Binding EstMemoryBytes}"/><Run Text=" Байт"/></TextBlock>
+                                    <TextBlock Grid.Column="4"><Run Text="Поиск: "/><Run Text="{Binding SearchTimeMs}"/><Run Text=" мс"/></TextBlock>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <ListView.Header>
+                            <Grid ColumnSpacing="10" Margin="12,5" BorderBrush="Gray" BorderThickness="0,0,0,1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="100"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Тип" FontWeight="SemiBold"/>
+                                <TextBlock Grid.Column="1" Text="Размер словаря" FontWeight="SemiBold"/>
+                                <TextBlock Grid.Column="2" Text="Узлы" FontWeight="SemiBold"/>
+                                <TextBlock Grid.Column="3" Text="Оценка памяти" FontWeight="SemiBold"/>
+                                <TextBlock Grid.Column="4" Text="Время поиска" FontWeight="SemiBold"/>
+                            </Grid>
+                        </ListView.Header>
+                    </ListView>
+                </Grid>
+            </TabViewItem>
+        </TabView>
+    </Grid>
+</Window>
+
