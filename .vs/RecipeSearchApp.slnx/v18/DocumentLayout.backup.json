@@ -141,8 +141,7 @@
               "RelativeToolTip": "RecipeSearchApp\\ViewModels\\MainViewModel.cs",
               "ViewState": "AgIAAO4AAAAAAAAAAAAswBQBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-21T03:13:58.882Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-21T03:13:58.882Z"
             },
             {
               "$type": "Document",
@@ -180,8 +179,7 @@
               "RelativeToolTip": "RecipeSearchApp\\Services\\InMemoryCache.cs",
               "ViewState": "AgIAADUAAAAAAAAAAAAswHIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-21T03:12:49.322Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-21T03:12:49.322Z"
             },
             {
               "$type": "Document",
@@ -193,8 +191,7 @@
               "RelativeToolTip": "RecipeSearchApp\\Services\\StringSearcher.cs",
               "ViewState": "AgIAAHEAAAAAAAAAAAAswNsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-21T03:12:21.672Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-21T03:12:21.672Z"
             },
             {
               "$type": "Document",
@@ -206,8 +203,7 @@
               "RelativeToolTip": "RecipeSearchApp\\Services\\BloomFilter.cs",
               "ViewState": "AgIAAB0AAAAAAAAAAAAswEMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-21T03:11:57.563Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-21T03:11:57.563Z"
             },
             {
               "$type": "Document",
@@ -219,8 +215,7 @@
               "RelativeToolTip": "RecipeSearchApp\\Services\\TrieNode.cs",
               "ViewState": "AgIAACoAAAAAAAAAAAAswFAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-21T03:11:21.941Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-21T03:11:21.941Z"
             },
             {
               "$type": "Document",
@@ -245,8 +240,7 @@
               "RelativeToolTip": "RecipeSearchApp\\Models\\Recipe.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-21T03:10:02.747Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-21T03:10:02.747Z"
             }
           ]
         }

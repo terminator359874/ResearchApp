@@ -19,13 +19,13 @@ jobs:
           dotnet-version: 8.0.x
 
       - name: Restore dependencies
-        run: dotnet restore RecipeSearchApp.Tests/RecipeSearchApp.Tests.csproj
+        run: dotnet restore
 
       - name: Build
-        run: dotnet build RecipeSearchApp.Tests/RecipeSearchApp.Tests.csproj --no-restore --configuration Release -p:Platform=x64
+        run: dotnet build --no-restore --configuration Release
 
       - name: Run Tests
-        run: dotnet test RecipeSearchApp.Tests/RecipeSearchApp.Tests.csproj --no-build --configuration Release --verbosity normal --collect:"XPlat Code Coverage"
+        run: dotnet test --no-build --configuration Release --verbosity normal --collect:"XPlat Code Coverage"
 
       - name: Upload Coverage to Codecov
         uses: codecov/codecov-action@v4
